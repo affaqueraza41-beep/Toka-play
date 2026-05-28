@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokaPlay</title>
+    <style>
+        body { margin: 0; background: #0b0b12; color: #fff; font-family: sans-serif; text-align: center; }
+        .screen { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100vw; }
+        #splash { background: #0b0b12; position: fixed; z-index: 100; animation: fade 3s forwards; }
+        @keyframes fade { 80% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+        input, select { width: 80%; padding: 15px; margin: 10px; border-radius: 20px; border: none; background: #1a1a2e; color: #fff; }
+        button { width: 80%; padding: 15px; background: #ff5722; border: none; border-radius: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="splash" class="screen"><h1>🐺 TokaPlay</h1></div>
+    <div id="profile" class="screen">
+        <h2>Setup Profile</h2>
+        <input id="nick" placeholder="Supreme Nickname">
+        <select id="gender"><option>Male</option><option>Female</option></select>
+        <button onclick="saveProfile()">START GAME</button>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
