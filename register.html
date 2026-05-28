@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toka Play - Create Your ID</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #0B0C10; }
+        .weplay-card { background: #121420; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .input-box { background: #1C1F32; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; }
+        .active-boy { background: #3B82F6; border: 1px solid #60A5FA; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+        .active-girl { background: #EC4899; border: 1px solid #F472B6; box-shadow: 0 0 15px rgba(236, 72, 153, 0.5); }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md space-y-6">
+        <div class="text-center">
+            <h1 class="text-2xl font-extrabold text-white">Create Your <span class="text-[#EC4899]">Toka ID</span></h1>
+        </div>
+        <div class="weplay-card rounded-[2rem] p-6 shadow-2xl">
+            <div class="space-y-4">
+                <input type="text" id="nickname" placeholder="Enter nickname..." class="w-full p-3 input-box text-sm text-white">
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="selectGender('boy')" id="btn-boy" class="p-3 input-box">BOY</button>
+                    <button onclick="selectGender('girl')" id="btn-girl" class="p-3 input-box">GIRL</button>
+                </div>
+                <select id="region" class="w-full p-3 input-box text-sm text-slate-300">
+                    <option value="India">India</option><option value="Global">Global</option>
+                </select>
+                <input type="date" id="dob" class="w-full p-3 input-box text-sm text-slate-300">
+                <button onclick="saveData()" class="w-full py-4 bg-gradient-to-r from-[#7C3AED] to-[#EC4899] text-white font-bold rounded-xl">Create Account</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { db } from "./firebase-config.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        
+        let gender = "";
+        window.selectGender = (g) => { gender = g; };
+        
+        window.saveData = async () => {
+            const name = document.getElementById('nickname').value;
+            const region = document.getElementById('region').value;
+            const dob = document.getElementById('dob').value;
+            
+            if(!name || !gender) return alert("Fill all details!");
+            
+            // Firebase setup (ensure you have auth ready if needed)
+            console.log("Saving:", name, gender, region, dob);
+            alert("Account Created!");
+            window.location.href = "home.html";
+        };
+    </script>
+</body>
+</html>
